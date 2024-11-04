@@ -3,210 +3,277 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BetterCar - Fuel Surveillance Device</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>BetterCar - Smart Fuel Management</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.294.0/lucide.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Existing styles */
-        body {
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23000000"><path d="M12 1C7.59 1 4 4.59 4 9c0 4.41 3.59 8 8 8s8-3.59 8-8c0-4.41-3.59-8-8-8zm0 14c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/></svg>'), auto;
+        .hidden {
+            display: none;
         }
-
-        .gradient-bg {
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
-        }
-
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .float {
-            animation: floating 3s ease-in-out infinite;
-        }
-
-        @keyframes floating {
-            0% { transform: translate(0, 0px); }
-            50% { transform: translate(0, 15px); }
-            100% { transform: translate(0, 0px); }
-        }
-
-        .glass {
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-        }
-
-        /* New styles */
-        .feature-card {
-            transition: transform 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .notification-badge {
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+        .active-tab {
+            color: #2563eb;
+            border-bottom: 2px solid #2563eb;
         }
     </style>
 </head>
-<body class="gradient-bg min-h-screen">
-    <!-- Navigation (Existing) -->
-    <nav class="glass text-white p-4 sticky top-0 z-50">
-        <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-bold">BetterCar</h1>
-            <div class="space-x-4">
-                <a href="#" class="hover:text-gray-200 transition-colors">Home</a>
-                <a href="#" class="hover:text-gray-200 transition-colors">About</a>
-                <a href="#" class="hover:text-gray-200 transition-colors">Features</a>
-                <a href="#" class="hover:text-gray-200 transition-colors">Contact</a>
+<body class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-white shadow-md">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <i data-lucide="car" class="h-8 w-8 text-blue-600"></i>
+                    <span class="ml-2 text-xl font-bold text-gray-900">BetterCar</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="#features" class="text-gray-600 hover:text-blue-600">Features</a>
+                    <a href="#about" class="text-gray-600 hover:text-blue-600">About</a>
+                    <a href="#contact" class="text-gray-600 hover:text-blue-600">Contact</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button onclick="toggleMobileMenu()" class="text-gray-600 hover:text-gray-900">
+                        <i data-lucide="menu" class="h-6 w-6" id="menuIcon"></i>
+                        <i data-lucide="x" class="h-6 w-6 hidden" id="closeIcon"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Mobile Navigation -->
+        <div id="mobileMenu" class="hidden md:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#features" class="block px-3 py-2 text-gray-600 hover:text-blue-600">Features</a>
+                <a href="#about" class="block px-3 py-2 text-gray-600 hover:text-blue-600">About</a>
+                <a href="#contact" class="block px-3 py-2 text-gray-600 hover:text-blue-600">Contact</a>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <!-- Hero Section (Existing with modifications) -->
-    <div class="container mx-auto px-4 py-12">
-        <!-- [Previous hero content remains the same] -->
-    </div>
-
-    <!-- New Features Section -->
-    <div class="container mx-auto px-4 py-16">
-        <h2 class="text-3xl font-bold text-white text-center mb-12">Why Choose BetterCar?</h2>
-        <div class="grid md:grid-cols-3 gap-8">
-            <!-- Feature Card 1 -->
-            <div class="glass p-6 rounded-lg feature-card">
-                <div class="text-center mb-4">
-                    <img src="/api/placeholder/80/80" alt="Real-time Monitoring" class="mx-auto mb-4"/>
-                    <h3 class="text-xl font-semibold text-white">Real-time Monitoring</h3>
-                </div>
-                <p class="text-white text-center">Track your fuel levels instantly with our advanced sensors and IoT technology.</p>
-            </div>
-
-            <!-- Feature Card 2 -->
-            <div class="glass p-6 rounded-lg feature-card">
-                <div class="text-center mb-4">
-                    <img src="/api/placeholder/80/80" alt="Smart Analytics" class="mx-auto mb-4"/>
-                    <h3 class="text-xl font-semibold text-white">Smart Analytics</h3>
-                </div>
-                <p class="text-white text-center">Get detailed insights about your fuel consumption patterns and cost analysis.</p>
-            </div>
-
-            <!-- Feature Card 3 -->
-            <div class="glass p-6 rounded-lg feature-card">
-                <div class="text-center mb-4">
-                    <img src="/api/placeholder/80/80" alt="Mobile App" class="mx-auto mb-4"/>
-                    <h3 class="text-xl font-semibold text-white">Mobile App</h3>
-                </div>
-                <p class="text-white text-center">Control and monitor your device from anywhere using our mobile application.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- How It Works Section -->
-    <div class="container mx-auto px-4 py-16">
-        <h2 class="text-3xl font-bold text-white text-center mb-12">How It Works</h2>
-        <div class="grid md:grid-cols-4 gap-8">
-            <div class="text-center">
-                <div class="glass rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-4">
-                    <i class="fas fa-plug text-4xl text-white"></i>
-                </div>
-                <h3 class="text-white font-semibold mb-2">Install Device</h3>
-                <p class="text-white">Easy plug-and-play installation</p>
-            </div>
-            <div class="text-center">
-                <div class="glass rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-4">
-                    <i class="fas fa-mobile-alt text-4xl text-white"></i>
-                </div>
-                <h3 class="text-white font-semibold mb-2">Connect App</h3>
-                <p class="text-white">Pair with our mobile app</p>
-            </div>
-            <div class="text-center">
-                <div class="glass rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-4">
-                    <i class="fas fa-chart-line text-4xl text-white"></i>
-                </div>
-                <h3 class="text-white font-semibold mb-2">Monitor</h3>
-                <p class="text-white">Track fuel levels real-time</p>
-            </div>
-            <div class="text-center">
-                <div class="glass rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-4">
-                    <i class="fas fa-save text-4xl text-white"></i>
-                </div>
-                <h3 class="text-white font-semibold mb-2">Save</h3>
-                <p class="text-white">Optimize fuel consumption</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- New Footer -->
-    <footer class="glass mt-16 text-white">
-        <div class="container mx-auto px-4 py-8">
-            <div class="grid md:grid-cols-4 gap-8">
-                <!-- Company Info -->
-                <div>
-                    <h4 class="text-xl font-bold mb-4">BetterCar</h4>
-                    <p class="mb-4">Making fuel monitoring smarter and easier for everyone.</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="hover:text-blue-300"><i class="fab fa-facebook"></i></a>
-                        <a href="#" class="hover:text-blue-300"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="hover:text-blue-300"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="hover:text-blue-300"><i class="fab fa-linkedin"></i></a>
+    <!-- Main Content -->
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <div class="bg-gradient-to-r from-blue-500 to-blue-700">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="text-white">
+                        <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                            Smart Fuel Management for Your Vehicle
+                        </h1>
+                        <p class="text-xl mb-8">
+                            Monitor, track, and optimize your fuel consumption with our cutting-edge surveillance system.
+                        </p>
+                        <button class="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
+                            Get Started
+                        </button>
+                    </div>
+                    <div class="hidden md:block">
+                        <img src="/api/placeholder/600/400" alt="Car Dashboard" class="rounded-lg shadow-xl">
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <!-- Quick Links -->
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="hover:text-blue-300">About Us</a></li>
-                        <li><a href="#" class="hover:text-blue-300">Features</a></li>
-                        <li><a href="#" class="hover:text-blue-300">Pricing</a></li>
-                        <li><a href="#" class="hover:text-blue-300">Support</a></li>
-                    </ul>
+        <!-- Features Section -->
+        <div id="features" class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center mb-12">Key Features</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="mb-4">
+                            <i data-lucide="fuel" class="w-6 h-6 text-blue-500"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Real-time Fuel Monitoring</h3>
+                        <p class="text-gray-600">Track your vehicle's fuel consumption with precision</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="mb-4">
+                            <i data-lucide="shield" class="w-6 h-6 text-blue-500"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Theft Prevention</h3>
+                        <p class="text-gray-600">Advanced sensors to detect and prevent fuel theft</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="mb-4">
+                            <i data-lucide="bar-chart-3" class="w-6 h-6 text-blue-500"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Analytics Dashboard</h3>
+                        <p class="text-gray-600">Comprehensive insights into your fuel usage patterns</p>
+                    </div>
                 </div>
+            </div>
+        </div>
 
-                <!-- Contact Info -->
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Contact Us</h4>
-                    <ul class="space-y-2">
-                        <li><i class="fas fa-envelope mr-2"></i> support@bettercar.com</li>
-                        <li><i class="fas fa-phone mr-2"></i> +1 (555) 123-4567</li>
-                        <li><i class="fas fa-map-marker-alt mr-2"></i> 123 Tech Street, Valley</li>
-                    </ul>
-                </div>
+        <!-- Login/Signup Section -->
+        <div class="py-16">
+            <div class="max-w-md mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <div class="flex justify-center mb-8">
+                        <button onclick="toggleForm('login')" id="loginTab" class="px-4 py-2 active-tab">
+                            Login
+                        </button>
+                        <button onclick="toggleForm('signup')" id="signupTab" class="px-4 py-2 text-gray-600">
+                            Sign Up
+                        </button>
+                    </div>
 
-                <!-- Newsletter -->
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
-                    <p class="mb-4">Stay updated with our latest features and updates.</p>
-                    <form class="space-y-2">
-                        <input type="email" placeholder="Enter your email" class="w-full p-2 rounded bg-white bg-opacity-20 placeholder-gray-300">
-                        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors w-full">Subscribe</button>
+                    <form id="loginForm" class="space-y-4">
+                        <div>
+                            <label class="block text-gray-700 mb-2">Email</label>
+                            <input type="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500" placeholder="Enter your email">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Password</label>
+                            <input type="password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500" placeholder="Enter your password">
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                            Login
+                        </button>
+                    </form>
+
+                    <form id="signupForm" class="space-y-4 hidden">
+                        <div>
+                            <label class="block text-gray-700 mb-2">Full Name</label>
+                            <input type="text" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500" placeholder="Enter your name">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Email</label>
+                            <input type="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500" placeholder="Enter your email">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Password</label>
+                            <input type="password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500" placeholder="Enter your password">
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                            Sign Up
+                        </button>
                     </form>
                 </div>
             </div>
-            <div class="border-t border-white border-opacity-20 mt-8 pt-8 text-center">
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">BetterCar</h3>
+                    <p class="text-gray-400">
+                        Making fuel management smarter and more efficient.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="#features" class="text-gray-400 hover:text-white">Features</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white">About</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Support</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+                    <p class="text-gray-400">
+                        Email: info@bettercar.com<br>
+                        Phone: (555) 123-4567
+                    </p>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center text-gray-400">
                 <p>&copy; 2024 BetterCar. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Floating Action Button -->
-    <div class="fixed bottom-6 right-6">
-        <button class="bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 transition-colors">
-            <i class="fas fa-headset text-2xl"></i>
-        </button>
-    </div>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
 
-    <!-- [Previous scripts remain the same] -->
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuIcon = document.getElementById('menuIcon');
+            const closeIcon = document.getElementById('closeIcon');
+            
+            mobileMenu.classList.toggle('hidden');
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        }
+
+        // Login/Signup form toggle
+        function toggleForm(formType) {
+            const loginForm = document.getElementById('loginForm');
+            const signupForm = document.getElementById('signupForm');
+            const loginTab = document.getElementById('loginTab');
+            const signupTab = document.getElementById('signupTab');
+
+            if (formType === 'login') {
+                loginForm.classList.remove('hidden');
+                signupForm.classList.add('hidden');
+                loginTab.classList.add('active-tab');
+                signupTab.classList.remove('active-tab');
+                signupTab.classList.add('text-gray-600');
+            } else {
+                loginForm.classList.add('hidden');
+                signupForm.classList.remove('hidden');
+                loginTab.classList.remove('active-tab');
+                signupTab.classList.add('active-tab');
+                loginTab.classList.add('text-gray-600');
+            }
+        }
+    // Handle signup form submission
+    document.getElementById('signupForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData);
+
+      const response = await fetch('/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        localStorage.setItem('token', result.token);
+        window.location.href = '/dashboard.html';  // Redirect to dashboard on success
+      } else {
+        alert('Signup failed: ' + result.message);
+      }
+    });
+
+    // Handle login form submission
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData);
+
+      const response = await fetch('/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        localStorage.setItem('token', result.token);
+        window.location.href = '/dashboard.html';  // Redirect to dashboard on success
+      } else {
+        alert('Login failed: ' + result.message);
+      }
+    });
+
+    </script>
 </body>
 </html>
