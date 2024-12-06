@@ -108,9 +108,12 @@
 
     <!-- Hero Section -->
     <div class="video-background">
-        <video autoplay loop muted playsinline class="absolute w-full h-full object-cover">
+        <video autoplay loop muted playsinline class="absolute w-full h-full object-cover" poster="assets/images/hero-background.png">
             <source src="assets/videos/hero-background.mp4" type="video/mp4">
-            <img src="/api/placeholder/1920/1080" alt="Hero Background" class="w-full h-full object-cover">
+            <source src="assets/videos/hero-background.webm" type="video/webm">
+
+            <!-- <img src="/api/placeholder/1920/1080" alt="Hero Background" class="w-full h-full object-cover"> -->
+            <img src="assets/images/hero-background.jpg" alt="Hero Background" class="w-full h-full object-cover">
         </video>
         <div class="video-content min-h-screen flex items-center">
             <div class="container mx-auto px-6 text-center">
@@ -238,7 +241,7 @@
                 <!-- <video autoplay loop muted class="rounded-xl shadow-2xl" alt="Protype video comming soon">
                     <!-- <source src="assets/videos/hero-background.mp4" type="video/mp4"> 
                 </video> -->
-                <img src="assets/videos/images/about.png" alt="Protype video comming soon" class="rounded-xl shadow-2xl">
+                <img src="assets/images/about.png" alt="Protype video comming soon" class="rounded-xl shadow-2xl">
             </div>
             <div data-aos="fade-left">
                 <h2 class="text-4xl font-bold mb-6 gradient-text">Why Choose BetterCar?</h2>
@@ -394,10 +397,10 @@
     <!-- Footer -->
     <footer class="bg-gray-900 text-white border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-4 py-12">
-            <div class="grid md:grid-cols-4 gap-8">
+            <div class="grid md:grid-cols-5 gap-8">
                 <div>
                     <h3 class="text-2xl font-bold text-blue-600 mb-4">BetterCar</h3>
-                    <p class="text-gray-400">Revolutionizing fleet fuel management with cutting-edge technology and real-time monitoring solutions.</p>
+                    <p class="text-gray-400">Revolutionizing fleet fuel management along with personal vehicle Fuel Management with cutting-edge technology and real-time monitoring solutions.</p>
                 </div>
                 <div>
                     <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
@@ -409,31 +412,38 @@
                     </ul>
                 </div>
                 <div>
+                    <h4 class="text-lg font-semibold mb-4">For Investors🫂</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="https://www.linkedin.com/company/bettercar/?viewAsMember=true" class="hover:text-blue-500">BetterCar Linkedin</a></li>
+                        <li><a href="https://docs.google.com/presentation/d/187-0bnAdVhyrnDOapE1V-KuE8PWBIHXMa1lYI7vJC38/edit?usp=sharing" class="hover:text-blue-500">Brief Presentation 🌟</a></li>
+                        <li><a href="https://www.linkedin.com/in/shashank-bhutiya/" class="hover:text-blue-500">Founder Linkedin</a></li>
+                        <!-- <li><a href="#" class="hover:text-blue-500">Mobile App</a></li> -->
+                    </ul>
+                </div>
+                <div>
                     <h4 class="text-lg font-semibold mb-4">Solutions</h4>
                     <ul class="space-y-2 text-gray-400">
                         <li><a href="#" class="hover:text-blue-500">Fuel Monitoring</a></li>
                         <li><a href="#" class="hover:text-blue-500">Theft Prevention</a></li>
                         <li><a href="#" class="hover:text-blue-500">Fleet Analytics</a></li>
-                        <li><a href="#" class="hover:text-blue-500">Mobile App</a></li>
+                        <!-- <li><a href="#" class="hover:text-blue-500">Mobile App</a></li> -->
                     </ul>
                 </div>
                 <div>
                     <h4 class="text-lg font-semibold mb-4">Contact Us</h4>
                     <ul class="space-y-2 text-gray-400">
                         
-                        <li class="flex items-center">
-                            <i data-lucide="phone" class="w-5 h-5 mr-2"></i>
-                            +91 70001 71007
+                        <li class="flex items-center">+91-70001-71007
                         </li>
                         <li class="flex items-center">
-                            <i data-lucide="mail" class="w-5 h-5 mr-2"></i>
-                            2024eb02445@online.bits-pilani.ac.in
+                            shashank.24bcs10325@sst.scaler.com
+                            <!-- <i data-lucide="mail" class="w-5 h-5 mr-2"></i> -->
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="mt-12 pt-8 border-t border-gray-800 text-center text-gray-400">
-                <p>&copy; 2024 BetterCar. All rights reserved.</p>
+                <p>Made with ❤️ and HTML, CSS</p><br><p>&copy; 2024 BetterCar. All rights reserved.</p>
             </div>
         </div>
     </footer>
