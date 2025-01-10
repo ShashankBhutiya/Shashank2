@@ -1,20 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BetterCar - Smart Fuel Management</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.294.0/lucide.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    <!-- <link rel="stylesheet" href="style.css"> -->
+
+    <!-- Meta Description for SEO -->
+    <meta name="description" content="BetterCar offers smart fuel management solutions with cutting-edge technology and real-time monitoring to optimize your fleet's performance.">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+
+    <!-- External Libraries -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.294.0/lucide.min.js"></script>
+
+    <!-- AOS Animation Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <!-- Custom Styles -->
     <style>
         body {
-            background: linear-gradient(to bottom, #0f172a, #1e293b);
+            background: linear-gradient(135deg, #0f172a, #1e293b);
             color: #ffffff;
+            scroll-behavior: smooth;
         }
 
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2563eb;
+        }
         .video-background {
             position: relative;
             width: 100%;
@@ -29,7 +59,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            
         }
 
         .video-content {
@@ -38,7 +68,9 @@
         }
 
         .header-scrolled {
-            background-color: rgba(15, 23, 42, 0.9) !important;
+            background-color: rgba(15, 23, 42, 0.9);
+            /* Fallback for browsers that don't support backdrop-filter */
+            background-color: #0f172a;
             backdrop-filter: blur(8px);
         }
 
@@ -51,55 +83,130 @@
             transform: scale(1.05);
         }
 
+        /* Consolidated .transparent-button class */
         .transparent-button {
             background: transparent;
-            border: 2px solid #3b82f6;
+            border: 2px solid #60A5FA;
             transition: all 0.3s ease;
         }
 
         .transparent-button:hover {
-            background: rgba(59, 130, 246, 0.1);
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+            
+            box-shadow: 0 0 30px rgba(0, 71, 186, 1);
+
         }
 
         .feature-card {
             background: rgba(30, 41, 59, 0.5);
+            /* Fallback for browsers that don't support backdrop-filter */
+            background-color: #1e293b;
             backdrop-filter: blur(8px);
             border: 1px solid rgba(59, 130, 246, 0.2);
         }
 
         .stat-card {
             background: rgba(30, 41, 59, 0.5);
+            /* Fallback for browsers that don't support backdrop-filter */
+            background-color: #1e293b;
             backdrop-filter: blur(8px);
             border: 1px solid rgba(59, 130, 246, 0.2);
         }
 
         .testimonial-card {
             background: rgba(30, 41, 59, 0.5);
+            /* Fallback for browsers that don't support backdrop-filter */
+            background-color: #1e293b;
             backdrop-filter: blur(8px);
             border: 1px solid rgba(59, 130, 246, 0.2);
         }
 
         .form-input {
             background: rgba(30, 41, 59, 0.5);
+            /* Fallback for browsers that don't support backdrop-filter */
+            background-color: #1e293b;
             border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        /* Ensure video background works properly */
+        .video-background {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .video-content {
+            position: relative;
+            z-index: 1;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        /* Floating Animation */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+
+        /* Glow Effect */
+        .glow-effect {
+            transition: box-shadow 0.3s ease;
+        }
+
+        .glow-effect:hover {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(45deg, #60A5FA, #A78BFA);
+            padding-bottom: 10px;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
     </style>
 </head>
 <body class="min-h-screen">
-    <!-- Header -->
+     <!-- Header -->
     <header class="fixed w-full z-50 transition-all duration-300" id="dynamic-header">
         <nav class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <div class="text-2xl font-bold text-blue-400">BetterCar</div>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-blue-400" onclick="toggleMobileMenu()" aria-label="Toggle Mobile Menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+
+                <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#features" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">Features</a>
-                    <a href="#about" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">About</a>
-                    <!-- <a href="#testimonials" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">Testimonials</a> -->
+                    <a href="aboutus.html" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">About Us</a>
+                    <a href="pricing.html" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">Pricing</a>
                     <a href="#contact" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">Contact</a>
                     <div class="flex items-center space-x-4">
-                        <a href ="signup.html"><button class="transparent-button text-blue-400 px-6 py-2 rounded-lg">Login</button></a>
+                        <a href="signup.html"><button class="transparent-button text-blue-400 px-6 py-2 rounded-lg">Login</button></a>
                         <a href="login.html"><button class="transparent-button text-blue-400 px-6 py-2 rounded-lg">Sign Up</button></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Dropdown -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 bg-black bg-opacity-90 rounded-lg">
+                <div class="flex flex-col space-y-4 p-4">
+                    <a href="#features" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">Features</a>
+                    <a href="aboutus.html" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">About</a>
+                    <a href="pricing.html" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">Pricing</a>
+                    <a href="#contact" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">Contact</a>
+                    <div class="flex flex-col space-y-2">
+                        <a href="signup.html"><button class="transparent-button text-blue-400 px-6 py-2 rounded-lg w-full">Login</button></a>
+                        <a href="login.html"><button class="transparent-button text-blue-400 px-6 py-2 rounded-lg w-full">Sign Up</button></a>
                     </div>
                 </div>
             </div>
@@ -111,57 +218,24 @@
         <video autoplay loop muted playsinline class="absolute w-full h-full object-cover" poster="assets/images/hero-background.png">
             <source src="assets/videos/hero-background.mp4" type="video/mp4">
             <source src="assets/videos/hero-background.webm" type="video/webm">
-
-            <!-- <img src="/api/placeholder/1920/1080" alt="Hero Background" class="w-full h-full object-cover"> -->
             <img src="assets/images/hero-background.jpg" alt="Hero Background" class="w-full h-full object-cover">
         </video>
         <div class="video-content min-h-screen flex items-center">
             <div class="container mx-auto px-6 text-center">
-                <h1 class="text-6xl font-bold mb-6 text-blue-400" data-aos="fade-down">
+                <h1 class="text-3xl md:text-6xl font-bold mb-4 md:mb-6 text-blue-400 gradient-text" data-aos="fade-down">
                     Revolutionizing Fuel Management
                 </h1>
-                <p class="text-2xl mb-8 text-gray-300" data-aos="fade-up" data-aos-delay="200">
+                <p class="text-lg md:text-2xl mb-6 md:mb-8 text-gray-300" data-aos="fade-up" data-aos-delay="200">
                     Save Fuel with Our New-age IoT Fuel Management System
                 </p>
-                <a href="knowmore.html">
-                <button class="transparent-button text-blue-400 px-8 py-4 rounded-lg font-semibold" data-aos="fade-up" data-aos-delay="400">
-                    Start Saving Today
-                </button>
+                <a href="pricing.html">
+                    <button class="transparent-button text-blue-400 px-6 md:px-8 py-3 md:py-4 text-sm md:text-base rounded-lg font-semibold " data-aos="fade-up" data-aos-delay="400">
+                        Start Saving Today
+                    </button>
                 </a>
             </div>
         </div>
     </div>
-<!--Statistics Section -->
-    <!--
-     <div class="py-16 bg-transparent">
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
-            <div class="stat-card p-6 rounded-xl text-center">
-                
-                <h3 class="text-4xl font-bold text-blue-600 mb-2">30%</h3>
-                <p class="text-gray-600">Average Fuel Savings</p>
-            </div>
-            <div class="stat-card p-6 rounded-xl text-center">
-                
-                <h3 class="text-4xl font-bold text-blue-600 mb-2">30%</h3>
-                <p class="text-gray-600">Average Fuel Savings</p>
-            </div>
-            <div class="stat-card p-6 rounded-xl text-center">
-                
-                <h3 class="text-4xl font-bold text-blue-600 mb-2">30%</h3>
-                <p class="text-gray-600">Average Fuel Savings</p>
-            </div>
-            <div class="stat-card p-6 rounded-xl text-center">
-                <h3 class="text-4xl font-bold text-blue-600 mb-2">50K+</h3>
-                <p class="text-gray-600">Vehicles Protected</p>
-            </div>
-            <div class="stat-card p-6 rounded-xl text-center">
-                <h3 class="text-4xl font-bold text-blue-600 mb-2">99.9%</h3>
-                <p class="text-gray-600">Theft Prevention Rate</p>
-            </div>
-            <div class="stat-card p-6 rounded-xl text-center">
-                <h3 class="text-4xl font-bold text-blue-600 mb-2">24/7</h3>
-                <p class="text-gray-600">Real-time Monitoring</p>        </div>
-    </div> -->
 
     <!-- Features Section -->
     <div id="features" class="py-24 bg-transparent">
@@ -170,89 +244,91 @@
                 Smart Features for Smarter Management
             </h2>
             <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature Cards -->
+                <!-- Feature 1 -->
                 <div class="bg-gray-800/50 p-8 rounded-xl hover-scale glow-effect" data-aos="fade-up" data-aos-delay="0">
                     <div class="mb-6 floating">
                         <i data-lucide="fuel" class="w-12 h-12 text-blue-500"></i>
                     </div>
                     <h3 class="text-2xl font-semibold mb-4">Mileage Analysis</h3>
                     <p class="text-gray-300">Accurately calculate the total mileage and fuel usage for each vehicle, helping you optimize performance and save on costs.</p>
-                </div> <div class="bg-gray-800/50 p-8 rounded-xl hover-scale glow-effect" data-aos="fade-up" data-aos-delay="0">
-                    <div class="mb-6 floating">
-                        <i data-lucide="fuel" class="w-12 h-12 text-blue-500"></i>
-                    </div><h3 class="text-2xl font-semibold mb-4">Traffic Prediction System</h3>
-                    <p class="text-gray-300">Leverage advanced technology to detect traffic conditions in real time, enabling you to choose the fastest, most efficient route based on various parameters.                    </p>
                 </div>
+                <!-- Feature 3 -->
                 <div class="bg-gray-800/50 p-8 rounded-xl hover-scale glow-effect" data-aos="fade-up" data-aos-delay="0">
                     <div class="mb-6 floating">
                         <i data-lucide="bar-chart" class="w-12 h-12 text-blue-500"></i>
                     </div>
                     <h3 class="text-2xl font-semibold mb-4">Expense Analytics</h3>
-                    <p class="text-gray-300">Get detailed reports and actionable insights to optimize fuel consumption and reduce operational costs across your fleet.                    </p>
-                </div><div class="bg-gray-800/50 p-8 rounded-xl hover-scale glow-effect" data-aos="fade-up" data-aos-delay="0">
+                    <p class="text-gray-300">Get detailed reports and actionable insights to optimize fuel consumption and reduce operational costs across your fleet.</p>
+                </div>
+                <!-- Feature 4 -->
+                <div class="bg-gray-800/50 p-8 rounded-xl hover-scale glow-effect" data-aos="fade-up" data-aos-delay="0">
                     <div class="mb-6 floating">
-                        <i data-lucide="fuel" class="w-12 h-12 text-blue-500"></i>
+                        <i data-lucide="monitor" class="w-12 h-12 text-blue-500"></i>
                     </div>
                     <h3 class="text-2xl font-semibold mb-4">Real-time Monitoring</h3>
                     <p class="text-gray-300">Track fuel levels 24/7 with precision IoT sensors. Receive instant alerts for unauthorized activity, ensuring complete transparency and control.</p>
-                </div><div class="bg-gray-800/50 p-8 rounded-xl hover-scale glow-effect" data-aos="fade-up" data-aos-delay="0">
+                </div>
+                <!-- Feature 5 -->
+                <div class="bg-gray-800/50 p-8 rounded-xl hover-scale glow-effect" data-aos="fade-up" data-aos-delay="0">
                     <div class="mb-6 floating">
-                        <i data-lucide="fuel" class="w-12 h-12 text-blue-500"></i>
+                        <i data-lucide="shield-check" class="w-12 h-12 text-blue-500"></i>
                     </div>
                     <h3 class="text-2xl font-semibold mb-4">Fuel Refueling Assurance</h3>
                     <p class="text-gray-300">Rest assured of accurate fuel levels after every refueling, eliminating doubts caused by fuel scams and malpractices.</p>
-                </div><div class="bg-gray-800/50 p-8 rounded-xl hover-scale glow-effect" data-aos="fade-up" data-aos-delay="0">
+                </div>
+                <!-- Feature 6 -->
+                <div class="bg-gray-800/50 p-8 rounded-xl hover-scale glow-effect" data-aos="fade-up" data-aos-delay="0">
                     <div class="mb-6 floating">
-                        <i data-lucide="fuel" class="w-12 h-12 text-blue-500"></i>
+                        <i data-lucide="settings" class="w-12 h-12 text-blue-500"></i>
                     </div>
                     <h3 class="text-2xl font-semibold mb-4">Repair Status Updates</h3>
                     <p class="text-gray-300">Stay informed with real-time updates on the maintenance and repair status of your vehicle to minimize downtime and improve efficiency.</p>
-                </div><div class="bg-gray-800/50 p-8 rounded-xl hover-scale glow-effect" data-aos="fade-up" data-aos-delay="0">
+                </div>
+                <!-- Feature 7 -->
+                <div class="bg-gray-800/50 p-8 rounded-xl hover-scale glow-effect" data-aos="fade-up" data-aos-delay="0">
                     <div class="mb-6 floating">
-                        <i data-lucide="fuel" class="w-12 h-12 text-blue-500"></i>
+                        <i data-lucide="star" class="w-12 h-12 text-blue-500"></i>
                     </div>
                     <h3 class="text-2xl font-semibold mb-4">Petrol Station Ratings Database</h3>
-                    <p class="text-gray-300">Introducing a much-needed rating system for petrol stations to help you choose reliable stations with confidence</p>
+                    <p class="text-gray-300">Introducing a much-needed rating system for petrol stations to help you choose reliable stations with confidence.</p>
                 </div>
+                <!-- Feature 8 -->
                 <div class="bg-gray-800/50 p-8 rounded-xl hover-scale glow-effect" data-aos="fade-up" data-aos-delay="0">
                     <div class="mb-6 floating">
-                        <i data-lucide="shield-check" class="w-12 h-12 text-blue-500"></i>
+                        <i data-lucide="lock" class="w-12 h-12 text-blue-500"></i>
                     </div>
                     <h3 class="text-2xl font-semibold mb-4">Theft Prevention</h3>
-                    <p class="text-gray-300">Our AI-powered algorithms detect suspicious patterns and alert you instantly in case of potential fuel theft, keeping your vehicle secure</p>
+                    <p class="text-gray-300">Our AI-powered algorithms detect suspicious patterns and alert you instantly in case of potential fuel theft, keeping your vehicle secure.</p>
                 </div>
+                <!-- Feature 9 -->
                 <div class="bg-gray-800/50 p-8 rounded-xl hover-scale glow-effect" data-aos="fade-up" data-aos-delay="0">
                     <div class="mb-6 floating">
-                        <i data-lucide="shield-check" class="w-12 h-12 text-blue-500"></i>
+                        <i data-lucide="droplet" class="w-12 h-12 text-blue-500"></i>
                     </div>
                     <h3 class="text-2xl font-semibold mb-4">All in One</h3>
                     <p class="text-gray-300">BetterCar supports all fuel types, including Petrol, Diesel, and CNG vehicles.</p>
                 </div>
-              
             </div>
         </div>
     </div>
-
-
 
     <!-- About Section -->
     <div id="about" class="py-24 bg-gray-900 text-white">
         <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-16 items-center">
             <div data-aos="fade-right">
-                <!-- <video autoplay loop muted class="rounded-xl shadow-2xl" alt="Protype video comming soon">
-                    <source src="assets/videos/hero-background.mp4" type="video/mp4"> 
-                </video> -->
-                <img src="assets/images/about.png" alt="Protype video comming soon" class="rounded-xl shadow-2xl">
+                <img src="assets/images/about.png" alt="Prototype Image Coming Soon" class="rounded-xl shadow-2xl">
             </div>
-            <div data-aos="fade-left">
+            <div data-aos="fade-up">
                 <h2 class="text-4xl font-bold mb-6 gradient-text">Why Choose BetterCar?</h2>
                 <div class="space-y-6 text-gray-300">
-                    <p>BetterCar's advanced fuel monitoring  system combines cutting-edge IoT sensors with intelligent software to provide complete visibility over your personal or fleet's fuel consumption.</p>
+                    <p>BetterCar's advanced fuel monitoring system combines cutting-edge IoT sensors with intelligent software to provide complete visibility over your personal or fleet's fuel consumption.</p>
                     <ol class="space-y-3">
                         <li class="flex items-center">
                             <i data-lucide="check-circle" class="w-6 h-6 text-blue-500 mr-2"></i>
                             1. Cost Effective
                         </li>
-                         <li class="flex items-center">
+                        <li class="flex items-center">
                             <i data-lucide="check-circle" class="w-6 h-6 text-blue-500 mr-2"></i>
                             2. Precision and Accuracy Make it Excellent
                         </li>
@@ -273,93 +349,7 @@
             </div>
         </div>
     </div>
-
-
-<script>
-    // Add this to your existing script section or create a new one
-    document.addEventListener('DOMContentLoaded', function() {
-        // Header scroll effect
-        const header = document.getElementById('dynamic-header');
-        const headerLinks = header.getElementsByTagName('a');
-        const headerLogo = header.querySelector('.text-2xl');
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('header-scrolled');
-            } else {
-                header.classList.remove('header-scrolled');
-            }
-        });
-
-        // Mouse hover effect
-        function handleMouseMove(event, element) {
-            const rect = element.getBoundingClientRect();
-            const x = (event.clientX - rect.left) / rect.width - 0.5;
-            const y = (event.clientY - rect.top) / rect.height - 0.5;
-            
-            element.style.transform = `
-                perspective(1000px) 
-                rotateX(${y * 10}deg) 
-                rotateY(${x * 10}deg) 
-                scale3d(1.05, 1.05, 1.05)
-            `;
-        }
-
-        function handleMouseLeave(element) {
-            element.style.transform = 'none';
-        }
-
-        // Apply hover effects to all elements with hover-scale class
-        document.querySelectorAll('.hover-scale').forEach(element => {
-            element.classList.add('mouse-effect');
-            
-            element.addEventListener('mousemove', (e) => {
-                handleMouseMove(e, element);
-            });
-
-            element.addEventListener('mouseleave', () => {
-                handleMouseLeave(element);
-            });
-        });
-
-        // Apply hover effects to header elements
-        [...headerLinks, headerLogo].forEach(element => {
-            element.classList.add('mouse-effect');
-            
-            element.addEventListener('mousemove', (e) => {
-                handleMouseMove(e, element);
-            });
-
-            element.addEventListener('mouseleave', () => {
-                handleMouseLeave(element);
-            });
-        });
-    });
-
-    // Initialize Alpine.js carousel
-    document.addEventListener('alpine:init', () => {
-        Alpine.data('testimonialCarousel', () => ({
-            currentSlide: 0,
-            total: 3,
-            next() {
-                this.currentSlide = (this.currentSlide + 1) % this.total;
-            },
-            prev() {
-                this.currentSlide = (this.currentSlide - 1 + this.total) % this.total;
-            },
-            // Auto-advance slides
-            init() {
-                setInterval(() => this.next(), 5000);
-            }
-        }));
-    });
-    AOS.init({
-            duration: 1000,
-            once: true
-        });
-        lucide.createIcons();
-
-</script>
+    
     <!-- Contact Section -->
     <div id="contact" class="py-24 bg-gray-900 text-white relative overflow-hidden">
         <div class="absolute inset-0 opacity-10">
@@ -398,66 +388,142 @@
     <footer class="bg-gray-900 text-white border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-4 py-12">
             <div class="grid md:grid-cols-5 gap-8">
+                <!-- Footer Column 1 -->
                 <div>
                     <h3 class="text-2xl font-bold text-blue-600 mb-4">BetterCar</h3>
-                    <p class="text-gray-400">Revolutionizing fleet fuel management along with personal vehicle Fuel Management with cutting-edge technology and real-time monitoring solutions.</p>
+                    <p class="text-gray-400">Revolutionizing fleet fuel management along with personal vehicle fuel management with cutting-edge technology and real-time monitoring solutions.</p>
                 </div>
+                <!-- Footer Column 2 -->
                 <div>
                     <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
                     <ul class="space-y-2 text-gray-400">
                         <li><a href="#features" class="hover:text-blue-500">Features</a></li>
                         <li><a href="#about" class="hover:text-blue-500">About Us</a></li>
-                        <li><a href="#testimonials" class="hover:text-blue-500">Testimonials</a></li>
                         <li><a href="#contact" class="hover:text-blue-500">Contact</a></li>
                     </ul>
                 </div>
+                <!-- Footer Column 3 -->
                 <div>
                     <h4 class="text-lg font-semibold mb-4">For Investors</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li><a href="https://www.linkedin.com/company/bettercar/?viewAsMember=true" class="hover:text-blue-500">BetterCar Linkedin</a></li>
-                        <li><a href="https://www.linkedin.com/in/shashank-bhutiya/" class="hover:text-blue-500">Founder Linkedin</a></li>
-                        <!-- <li><a href="#" class="hover:text-blue-500">Mobile App</a></li> -->
+                        <li><a href="https://www.linkedin.com/company/bettercar/?viewAsMember=true" class="hover:text-blue-500">BetterCar LinkedIn</a></li>
+                        <li><a href="https://www.linkedin.com/in/shashank-bhutiya/" class="hover:text-blue-500">Founder LinkedIn</a></li>
                     </ul>
                 </div>
+                <!-- Footer Column 4 -->
                 <div>
                     <h4 class="text-lg font-semibold mb-4">Solutions</h4>
                     <ul class="space-y-2 text-gray-400">
                         <li><a href="#" class="hover:text-blue-500">Fuel Monitoring</a></li>
                         <li><a href="#" class="hover:text-blue-500">Theft Prevention</a></li>
                         <li><a href="#" class="hover:text-blue-500">Fleet Analytics</a></li>
-                        <!-- <li><a href="#" class="hover:text-blue-500">Mobile App</a></li> -->
                     </ul>
                 </div>
+                <!-- Footer Column 5 -->
                 <div>
                     <h4 class="text-lg font-semibold mb-4">Contact Us</h4>
                     <ul class="space-y-2 text-gray-400">
-                        
-                        <li class="flex items-center">+91-70001-71007
-                        </li>
-                        <li class="flex items-center">
-                            shashank10bhutiya@gmail.com
-                            <!-- <i data-lucide="mail" class="w-5 h-5 mr-2"></i> -->
-                        </li>
+                        <li class="flex items-center">+91-70001-71007</li>
+                        <li class="flex items-center">shashank10bhutiya@
+                            gmail.com</li>
                     </ul>
                 </div>
             </div>
             <div class="mt-12 pt-8 border-t border-gray-800 text-center text-gray-400">
-                <p>&copy; 2024 BetterCar. All rights reserved.</p>
+                <p>&copy; 2025 BetterCar. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
+    <!-- JavaScript Code -->
     <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuButton = document.querySelector('button[onclick="toggleMobileMenu()"]');
+            
+            if (mobileMenu && !mobileMenu.contains(event.target) && !menuButton.contains(event.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // DOM Content Loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Header Scroll Effect
+            const header = document.getElementById('dynamic-header');
+            const headerLinks = header.getElementsByTagName('a');
+            const headerLogo = header.querySelector('.text-2xl');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('header-scrolled');
+                } else {
+                    header.classList.remove('header-scrolled');
+                }
+            });
+
+            // Mouse Hover Effect
+            function handleMouseMove(event, element) {
+                const rect = element.getBoundingClientRect();
+                const x = (event.clientX - rect.left) / rect.width - 0.5;
+                const y = (event.clientY - rect.top) / rect.height - 0.5;
+                
+                element.style.transform = `
+                    perspective(1000px) 
+                    rotateX(${y * 10}deg) 
+                    rotateY(${x * 10}deg) 
+                    scale3d(1.05, 1.05, 1.05)
+                `;
+            }
+
+            function handleMouseLeave(element) {
+                element.style.transform = 'none';
+            }
+
+            // Apply Hover Effects
+            document.querySelectorAll('.hover-scale').forEach(element => {
+                element.classList.add('mouse-effect');
+                
+                element.addEventListener('mousemove', (e) => {
+                    handleMouseMove(e, element);
+                });
+
+                element.addEventListener('mouseleave', () => {
+                    handleMouseLeave(element);
+                });
+            });
+
+            // Apply Hover Effects to Header Elements
+            [...headerLinks, headerLogo].forEach(element => {
+                element.classList.add('mouse-effect');
+                
+                element.addEventListener('mousemove', (e) => {
+                    handleMouseMove(e, element);
+                });
+
+                element.addEventListener('mouseleave', () => {
+                    handleMouseLeave(element);
+                });
+            });
+        });
+
         // Initialize AOS
         AOS.init({
             duration: 1000,
-            once: true
+            once: true,
+            offset: 100
         });
 
-        // Initialize Lucide icons
+        // Initialize Lucide Icons
         lucide.createIcons();
 
-        // Smooth scrolling for anchor links
+        // Smooth Scrolling for Anchor Links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -471,38 +537,7 @@
             });
         });
 
-        // Scroll reveal animations
-        document.addEventListener('scroll', () => {
-            const elements = document.querySelectorAll('.scroll-reveal');
-            elements.forEach(el => {
-                if (isElementInViewport(el)) {
-                    el.classList.add('opacity-100', 'translate-y-0');
-                    el.classList.remove('opacity-0', 'translate-y-10');
-                }
-            });
-        });
-
-        function isElementInViewport(el) {
-            const rect = el.getBoundingClientRect();
-            return (
-                rect.top >= 0 &&
-                rect.left >= 0 &&
-                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-            );
-        }
-
-        // Mobile menu toggle
-        const mobileMenuButton = document.querySelector('.mobile-menu-button');
-        const mobileMenu = document.querySelector('.mobile-menu');
-        
-        if (mobileMenuButton && mobileMenu) {
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-        }
-
-        // Form submission handling
+        // Form Submission Handling
         const contactForm = document.querySelector('form');
         if (contactForm) {
             contactForm.addEventListener('submit', (e) => {
@@ -512,26 +547,6 @@
                 contactForm.reset();
             });
         }
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 100
-        });
-
-        // Initialize Lucide icons
-        lucide.createIcons();
-
-        // Header scroll effect
-        const header = document.getElementById('dynamic-header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('header-scrolled');
-            } else {
-                header.classList.remove('header-scrolled');
-            }
-        });
     </script>
-
 </body>
 </html>

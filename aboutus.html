@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - BetterCar</title>
+
+    <!-- Meta Description for SEO -->
+    <meta name="description" content="Learn more about BetterCar, our mission, vision, and the dedicated team revolutionizing fuel management with innovative IoT solutions.">
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+
+    <!-- External Libraries -->
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.294.0/lucide.min.js"></script>
+
+    <!-- AOS Animation Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: #ffffff;
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2563eb;
+        }
+
+        .header-scrolled {
+            background-color: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(8px);
+        }
+
+        .hover-scale {
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+
+        .transparent-button {
+            background: transparent;
+            border: 2px solid #3b82f6;
+            color: #3b82f6;
+            transition: all 0.3s ease;
+        }
+
+        .transparent-button:hover {
+            background: #3b82f6;
+            color: #ffffff;
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.6);
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #60A5FA, #A78BFA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-animation 3s ease-in-out infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Team Member Card */
+        .team-card {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .text-5xl {
+                font-size: 2.5rem;
+            }
+            .text-4xl {
+                font-size: 2rem;
+            }
+            .px-6 {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Header -->
+    <header class="fixed w-full z-50 transition-all duration-300" id="dynamic-header">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold text-blue-400">BetterCar</div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-blue-400" onclick="toggleMobileMenu()" aria-label="Toggle Mobile Menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html#features" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">Features</a>
+                    <a href="about.html" class="text-blue-400 transition-colors duration-300 font-semibold">About</a>
+                    <a href="pricing.html" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">Pricing</a>
+                    <a href="index.html#contact" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">Contact</a>
+                    <div class="flex items-center space-x-4">
+                        <a href="signup.html"><button class="transparent-button px-6 py-2 rounded-lg">Login</button></a>
+                        <a href="login.html"><button class="transparent-button px-6 py-2 rounded-lg">Sign Up</button></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Dropdown -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 bg-black bg-opacity-90 rounded-lg">
+                <div class="flex flex-col space-y-4 p-4">
+                    <a href="index.html#features" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">Features</a>
+                    <a href="about.html" class="text-blue-400 transition-colors duration-300 font-semibold">About</a>
+                    <a href="pricing.html" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">Pricing</a>
+                    <a href="index.html#contact" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">Contact</a>
+                    <div class="flex flex-col space-y-2">
+                        <a href="signup.html"><button class="transparent-button px-6 py-2 rounded-lg w-full">Login</button></a>
+                        <a href="login.html"><button class="transparent-button px-6 py-2 rounded-lg w-full">Sign Up</button></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- About Us Section -->
+    <section class="pt-32 pb-24 bg-gray-900 text-white">
+        <div class="container mx-auto px-6">
+            <h1 class="text-5xl font-bold text-center mb-12 gradient-text" data-aos="fade-up">About Us</h1>
+            <p class="text-center text-gray-300 mb-16 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                At BetterCar, we're on a mission to revolutionize fuel management with innovative IoT solutions. Our dedicated team is committed to delivering exceptional value and driving sustainable change in the automotive industry.
+            </p>
+
+            <!-- Mission, Vision, Values -->
+            <div class="grid md:grid-cols-3 gap-12">
+                <!-- Mission -->
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <div class="p-6 bg-gray-800 rounded-lg shadow-lg hover-scale">
+                        <div class="mb-4">
+                            <i data-lucide="target" class="w-12 h-12 text-blue-500"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-2">Our Mission</h3>
+                        <p class="text-gray-300">
+                            To empower individuals and businesses with smart fuel management solutions that enhance efficiency, reduce costs, and promote sustainability.
+                        </p>
+                    </div>
+                </div>
+                <!-- Vision -->
+                <div data-aos="fade-up" data-aos-delay="300">
+                    <div class="p-6 bg-gray-800 rounded-lg shadow-lg hover-scale">
+                        <div class="mb-4">
+                            <i data-lucide="eye" class="w-12 h-12 text-blue-500"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-2">Our Vision</h3>
+                        <p class="text-gray-300">
+                            To be a global leader in smart automotive solutions, pioneering advancements that shape the future of transportation and energy consumption.
+                        </p>
+                    </div>
+                </div>
+                <!-- Values -->
+                <div data-aos="fade-up" data-aos-delay="400">
+                    <div class="p-6 bg-gray-800 rounded-lg shadow-lg hover-scale">
+                        <div class="mb-4">
+                            <i data-lucide="heart" class="w-12 h-12 text-blue-500"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-2">Our Values</h3>
+                        <p class="text-gray-300">
+                            Innovation, Integrity, Customer Focus, Sustainability, and Excellence are at the core of everything we do.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="py-24 bg-gradient-to-b from-gray-900 to-gray-800 text-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text" data-aos="fade-up">Meet the Team</h2>
+            <div class="grid md:grid-cols-1 gap-12">
+                <!-- Team Member 1 -->
+                <div class="team-card p-6 rounded-lg text-center" data-aos="fade-up" data-aos-delay="200">
+                    <img src="assets/images/shashank.jpeg" alt="Shashank Bhutiya" class="w-32 h-32 rounded-full mx-auto mb-4">
+                    <h3 class="text-xl font-semibold mb-1">Shashank Bhutiya</h3>
+                    <p class="text-blue-400 mb-3">Founder & CEO</p>
+                    <p class="text-gray-300">
+                        With a passion for technology and innovation, Shashank leads BetterCar with a vision to transform the automotive industry.
+                    </p>
+                    <div class="flex justify-center space-x-4 mt-4">
+                        <a href="https://www.linkedin.com/in/shashank-bhutiya/" target="_blank" rel="noopener noreferrer">
+                            <i data-lucide="linkedin" class="w-6 h-6 text-blue-500 hover:text-blue-600"></i>
+                        </a>
+                        <!-- Add other social links if available -->
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- History Section -->
+    <section class="py-24 bg-gray-900 text-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text" data-aos="fade-up">Our Journey</h2>
+            <div class="space-y-8">
+                <div class="flex flex-col md:flex-row items-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="md:w-1/2 mb-6 md:mb-0">
+                        <img src="assets/images/BetterCarlogo.png" alt="Our Journey" class="rounded-xl shadow-2xl">
+                    </div>
+                    <div class="md:w-1/2 md:pl-12">
+                        <p class="text-gray-300">
+                            Founded in 2024, BetterCar began with a simple idea: to make fuel management smarter and more efficient for everyone. Through relentless innovation and a focus on customer needs, we've grown into a dynamic team dedicated to shaping the future of transportation.
+                        </p>
+                        <p class="text-gray-300 mt-4">
+                            From our humble beginnings to our current position as a leader in the industry, our journey has been fueled by passion, perseverance, and a commitment to excellence.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="py-24 bg-gradient-to-b from-gray-800 to-gray-900 text-center">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-6 gradient-text" data-aos="fade-up">Join Us in Revolutionizing Fuel Management</h2>
+            <p class="text-gray-300 mb-8 max-w-xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                Whether you're a driver, a fleet manager, or an industry partner, we're excited to collaborate and drive innovation together.
+            </p>
+            <a href="contact.html">
+                <button class="transparent-button px-8 py-4 rounded-full font-semibold" data-aos="fade-up" data-aos-delay="200">
+                    Get in Touch
+                </button>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <!-- Include your existing footer code here -->
+        <!-- Footer -->
+        <footer class="bg-gray-900 text-white border-t border-gray-800">
+            <div class="max-w-7xl mx-auto px-4 py-12">
+                <div class="grid md:grid-cols-5 gap-8">
+                    <!-- Footer Column 1 -->
+                    <div>
+                        <h3 class="text-2xl font-bold text-blue-600 mb-4">BetterCar</h3>
+                        <p class="text-gray-400">Revolutionizing fleet fuel management along with personal vehicle fuel management with cutting-edge technology and real-time monitoring solutions.</p>
+                    </div>
+                    <!-- Footer Column 2 -->
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><a href="#features" class="hover:text-blue-500">Features</a></li>
+                            <li><a href="#about" class="hover:text-blue-500">About Us</a></li>
+                            <li><a href="#contact" class="hover:text-blue-500">Contact</a></li>
+                        </ul>
+                    </div>
+                    <!-- Footer Column 3 -->
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">For Investors</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><a href="https://www.linkedin.com/company/bettercar/?viewAsMember=true" class="hover:text-blue-500">BetterCar LinkedIn</a></li>
+                            <li><a href="https://www.linkedin.com/in/shashank-bhutiya/" class="hover:text-blue-500">Founder LinkedIn</a></li>
+                        </ul>
+                    </div>
+                    <!-- Footer Column 4 -->
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Solutions</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><a href="#" class="hover:text-blue-500">Fuel Monitoring</a></li>
+                            <li><a href="#" class="hover:text-blue-500">Theft Prevention</a></li>
+                            <li><a href="#" class="hover:text-blue-500">Fleet Analytics</a></li>
+                        </ul>
+                    </div>
+                    <!-- Footer Column 5 -->
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Contact Us</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li class="flex items-center">+91-70001-71007</li>
+                            <li class="flex items-center">shashank10bhutiya@
+                                gmail.com</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-12 pt-8 border-t border-gray-800 text-center text-gray-400">
+                    <p>&copy; 2025 BetterCar. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    
+
+    <!-- JavaScript Libraries -->
+    <!-- AOS Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <!-- JavaScript Code -->
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuButton = document.querySelector('button[onclick="toggleMobileMenu()"]');
+            
+            if (mobileMenu && !mobileMenu.contains(event.target) && !menuButton.contains(event.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
