@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BetterCar - User Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4C91F0;
+            --secondary-color: #6A5ACD;
+            --background-dark: #0e0e0e;
+            --background-light: #121212;
+            --success-color: #10B981;
+            --warning-color: #F59E0B;
+            --danger-color: #EF4444;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--background-dark), var(--background-light));
+            color: white;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(76, 145, 240, 0.1);
+            border-radius: 10px;
+        }
+
+        .title {
+            font-size: 24px;
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+        .logout-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            padding: 8px 16px;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: rgba(76, 145, 240, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(76, 145, 240, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h2 {
+            margin: 0 0 15px 0;
+            color: var(--primary-color);
+            font-size: 18px;
+        }
+
+        .value {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .status-good { background-color: var(--success-color); }
+        .status-warning { background-color: var(--warning-color); }
+        .status-danger { background-color: var(--danger-color); }
+
+        .map-container {
+            height: 400px;
+            background: rgba(76, 145, 240, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-placeholder {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .battery-indicator {
+            width: 100%;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .battery-level {
+            height: 100%;
+            background: var(--success-color);
+            width: 85%;
+            transition: width 0.3s ease;
+        }
+
+        .signal-strength {
+            display: flex;
+            gap: 3px;
+            margin-top: 10px;
+        }
+
+        .signal-bar {
+            width: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+        }
+
+        .signal-bar.active {
+            background: var(--primary-color);
+        }
+
+        .bar-1 { height: 6px; }
+        .bar-2 { height: 12px; }
+        .bar-3 { height: 18px; }
+        .bar-4 { height: 24px; }
+
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="header">
+            <h1 class="title">Vehicle Monitor Dashboard</h1>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+
+        <div class="grid-container">
+            <!-- Speed -->
+            <div class="card">
+                <h2>Current Speed</h2>
+                <div class="value">65 km/h</div>
+                <div>
+                    <span class="status-indicator status-good"></span>
+                    <span>Within Speed Limit</span>
+                </div>
+            </div>
+
+            <!-- Battery Status -->
+            <div class="card">
+                <h2>Battery Status</h2>
+                <div class="value">85%</div>
+                <div class="battery-indicator">
+                    <div class="battery-level"></div>
+                </div>
+                <div style="margin-top: 10px;">
+                    <span class="status-indicator status-good"></span>
+                    <span>Good Condition</span>
+                </div>
+            </div>
+
+            <!-- Signal Strength -->
+            <div class="card">
+                <h2>Signal Strength</h2>
+                <div class="value">Strong</div>
+                <div class="signal-strength">
+                    <div class="signal-bar bar-1 active"></div>
+                    <div class="signal-bar bar-2 active"></div>
+                    <div class="signal-bar bar-3 active"></div>
+                    <div class="signal-bar bar-4 active"></div>
+                </div>
+            </div>
+
+            <!-- Fuel Level -->
+            <div class="card">
+                <h2>Fuel Level</h2>
+                <div class="value">75%</div>
+                <div>
+                    <span class="status-indicator status-good"></span>
+                    <span>Adequate</span>
+                </div>
+            </div>
+
+            <!-- Engine Temperature -->
+            <div class="card">
+                <h2>Engine Temperature</h2>
+                <div class="value">82°C</div>
+                <div>
+                    <span class="status-indicator status-warning"></span>
+                    <span>Monitor</span>
+                </div>
+            </div>
+
+            <!-- Location -->
+            <div class="card">
+                <h2>Current Location</h2>
+                <div class="value" style="font-size: 24px;">28.7041° N, 77.1025° E</div>
+                <div>
+                    <span class="status-indicator status-good"></span>
+                    <span>GPS Lock Active</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Map Section -->
+        <div class="map-container">
+            <div class="map-placeholder">
+                <h2>Live Location Map</h2>
+                <p>Map integration coming soon...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check authentication
+        function checkAuth() {
+            const token = localStorage.getItem('token');
+            const userType = localStorage.getItem('userType');
+            
+            if (!token || userType !== 'user') {
+                window.location.href = 'login.html';
+            }
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('token');
+            localStorage.removeItem('userType');
+            window.location.href = 'login.html';
+        }
+
+        // Simulate real-time updates
+        function updateDashboard() {
+            const speed = Math.floor(Math.random() * (80 - 50) + 50);
+            const battery = Math.floor(Math.random() * (100 - 70) + 70);
+            const temp = Math.floor(Math.random() * (90 - 75) + 75);
+
+            document.querySelector('.card:nth-child(1) .value').textContent = `${speed} km/h`;
+            document.querySelector('.card:nth-child(2) .value').textContent = `${battery}%`;
+            document.querySelector('.card:nth-child(5) .value').textContent = `${temp}°C`;
+
+            // Update battery level indicator
+            document.querySelector('.battery-level').style.width = `${battery}%`;
+        }
+
+        // Initial load
+        checkAuth();
+        
+        
+    </script>
+</body>
+</html>

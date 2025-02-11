@@ -1,0 +1,66 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "frontend/**/*",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "frontend/pages/public/index.html"
+    },
+    {
+      "src": "/about",
+      "dest": "frontend/pages/public/about.html"
+    },
+    {
+      "src": "/pricing",
+      "dest": "frontend/pages/public/pricing.html"
+    },
+    {
+      "src": "/coming-soon",
+      "dest": "frontend/pages/public/coming-soon.html"
+    },
+    {
+      "src": "/knowmore",
+      "dest": "frontend/pages/public/knowmore.html"
+    },
+    {
+      "src": "/login",
+      "dest": "frontend/pages/auth/login.html"
+    },
+    {
+      "src": "/signup",
+      "dest": "frontend/pages/auth/signup.html"
+    },
+    {
+      "src": "/dashboard",
+      "dest": "frontend/pages/dashboard/dashboard.html"
+    },
+    {
+      "src": "/admin-dashboard",
+      "dest": "frontend/pages/dashboard/admin-dashboard.html"
+    },
+    {
+      "src": "/assets/(.*)",
+      "dest": "frontend/assets/$1"
+    },
+    {
+      "src": "/scripts/(.*)",
+      "dest": "frontend/scripts/$1"
+    },
+    {
+      "src": "/styles/(.*)",
+      "dest": "frontend/styles/$1"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "frontend/404.html"
+    }
+  ]
+}

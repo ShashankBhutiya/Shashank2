@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BetterCar Admin - ESP32 Monitor</title>
+    <style>
+        :root {
+            --primary-color: #4C91F0;
+            --secondary-color: #6A5ACD;
+            --background-dark: #0e0e0e;
+            --background-light: #121212;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--background-dark), var(--background-light));
+            color: white;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(76, 145, 240, 0.1);
+            border-radius: 10px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            color: var(--primary-color);
+        }
+
+        .logout-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            padding: 8px 16px;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .data-card {
+            background: rgba(76, 145, 240, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(76, 145, 240, 0.2);
+        }
+
+        .data-card h3 {
+            margin: 0 0 15px 0;
+            color: var(--primary-color);
+        }
+
+        .data-value {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .status-good {
+            background-color: #00ff00;
+        }
+
+        .status-warning {
+            background-color: #ffff00;
+        }
+
+        .status-error {
+            background-color: #ff0000;
+        }
+
+        .refresh-btn {
+            background: var(--primary-color);
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .refresh-btn:hover {
+            background: #3a7ad9;
+        }
+
+        .last-update {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="header">
+            <h1>ESP32 Monitor Dashboard</h1>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+
+        <button class="refresh-btn" onclick="refreshData()">Refresh Data</button>
+
+        <div class="grid-container">
+            <!-- WiFi Signal Strength -->
+            <div class="data-card">
+                <h3>WiFi Signal Strength</h3>
+                <div class="data-value" id="wifi-strength">-65 dBm</div>
+                <div>
+                    <span class="status-indicator status-good"></span>
+                    <span>Good Connection</span>
+                </div>
+            </div>
+
+            <!-- Battery Level -->
+            <div class="data-card">
+                <h3>Battery Level</h3>
+                <div class="data-value" id="battery-level">85%</div>
+                <div>
+                    <span class="status-indicator status-good"></span>
+                    <span>Healthy</span>
+                </div>
+            </div>
+
+            <!-- Device Temperature -->
+            <div class="data-card">
+                <h3>Device Temperature</h3>
+                <div class="data-value" id="temperature">42°C</div>
+                <div>
+                    <span class="status-indicator status-warning"></span>
+                    <span>Warning</span>
+                </div>
+            </div>
+
+            <!-- Connection Status -->
+            <div class="data-card">
+                <h3>Connection Status</h3>
+                <div class="data-value" id="connection-status">Connected</div>
+                <div>
+                    <span class="status-indicator status-good"></span>
+                    <span>Online</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="last-update">Last updated: <span id="last-update-time">Just now</span></div>
+    </div>
+
+    <script>
+        // Check authentication
+        function checkAuth() {
+            const token = localStorage.getItem('token');
+            const userType = localStorage.getItem('userType');
+            
+            if (!token || userType !== 'admin') {
+                window.location.href = 'login.html';
+            }
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('token');
+            localStorage.removeItem('userType');
+            window.location.href = 'login.html';
+        }
+
+        // Refresh data from ESP32
+        async function refreshData() {
+            try {
+                const token = localStorage.getItem('token');
+                const response = await fetch('http://localhost:3000/api/esp32/data', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch data');
+                }
+
+                const data = await response.json();
+                updateDashboard(data);
+                updateLastUpdateTime();
+            } catch (error) {
+                console.error('Error fetching ESP32 data:', error);
+            }
+        }
+
+        // Update dashboard with new data
+        function updateDashboard(data) {
+            // Update WiFi strength
+            const wifiStrength = document.getElementById('wifi-strength');
+            wifiStrength.textContent = `${data.wifiStrength || '-65'} dBm`;
+
+            // Update battery level
+            const batteryLevel = document.getElementById('battery-level');
+            batteryLevel.textContent = `${data.batteryLevel || '85'}%`;
+
+            // Update temperature
+            const temperature = document.getElementById('temperature');
+            temperature.textContent = `${data.temperature || '42'}°C`;
+
+            // Update connection status
+            const connectionStatus = document.getElementById('connection-status');
+            connectionStatus.textContent = data.connected ? 'Connected' : 'Disconnected';
+        }
+
+        // Update last update timestamp
+        function updateLastUpdateTime() {
+            const now = new Date();
+            document.getElementById('last-update-time').textContent = 
+                now.toLocaleTimeString();
+        }
+
+        // Auto refresh every 30 seconds
+        setInterval(refreshData, 30000);
+
+        // Initial load
+        checkAuth();
+        refreshData();
+    </script>
+</body>
+</html>
