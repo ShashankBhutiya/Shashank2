@@ -148,13 +148,13 @@
 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="/#features" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">Features</a>
-                    <a href="/about" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">About</a>
-                    <a href="/pricing" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">Pricing</a>
-                    <a href="/#contact" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">Contact</a>
+                    <a href="index.html#features" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">Features</a>
+                    <a href="aboutus.html" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">About</a>
+                    <a href="pricing.html" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">Pricing</a>
+                    <a href="index.html#contact" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">Contact</a>
                     <div class="flex items-center space-x-4">
-                        <a href="/signup"><button class="transparent-button text-blue-400 px-6 py-2 rounded-lg">Login</button></a>
-                        <a href="/login"><button class="transparent-button text-blue-400 px-6 py-2 rounded-lg">Sign Up</button></a>
+                        <a href="signup.html"><button class="transparent-button text-blue-400 px-6 py-2 rounded-lg">Login</button></a>
+                        <a href="login.html"><button class="transparent-button text-blue-400 px-6 py-2 rounded-lg">Sign Up</button></a>
                     </div>
                 </div>
             </div>
@@ -162,19 +162,28 @@
             <!-- Mobile Menu Dropdown -->
             <div id="mobile-menu" class="hidden md:hidden mt-4 bg-black bg-opacity-90 rounded-lg">
                 <div class="flex flex-col space-y-4 p-4">
-                    <a href="/#features" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">Features</a>
-                    <a href="/about" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">About</a>
-                    <a href="/pricing" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">Pricing</a>
-                    <a href="/#contact" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">Contact</a>
+                    <a href="#features" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">Features</a>
+                    <a href="aboutus.html" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">About</a>
+                    <a href="pricing.html" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">Pricing</a>
+                    <a href="#contact" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">Contact</a>
                     <div class="flex flex-col space-y-2">
-                        <a href="/signup"><button class="transparent-button text-blue-400 px-6 py-2 rounded-lg w-full">Login</button></a>
-                        <a href="/login"><button class="transparent-button text-blue-400 px-6 py-2 rounded-lg w-full">Sign Up</button></a>
+                        <a href="signup.html"><button class="transparent-button text-blue-400 px-6 py-2 rounded-lg w-full">Login</button></a>
+                        <a href="login.html"><button class="transparent-button text-blue-400 px-6 py-2 rounded-lg w-full">Sign Up</button></a>
                     </div>
                 </div>
             </div>
         </nav>
     </header>
-    <!-- Enterprise Plan -->
+
+    <!-- Pricing Section -->
+    <section class="py-24 bg-gray-900 text-white">
+        <div class="container mx-auto px-6">
+            <h1 class="text-5xl font-bold text-center mb-12 gradient-text" data-aos="fade-up">Choose Your Plan</h1>
+            <p class="text-center text-gray-300 mb-16 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                Flexible plans tailored to meet your needs. Whether you're an individual or managing a large fleet, we've got you covered.
+            </p>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Enterprise Plan -->
                 <div class="pricing-card p-8 rounded-xl hover-scale" data-aos="fade-up" data-aos-delay="400">
                     <h2 class="text-2xl font-semibold mb-4">Enterprise</h2>
                     <p class="text-5xl font-bold mb-4">Custom</p>
@@ -185,7 +194,7 @@
                         <li class="flex items-center"><i data-lucide="check-circle" class="text-blue-500 w-5 h-5 mr-2"></i>Advanced Analytics</li>
                         <li class="flex items-center"><i data-lucide="check-circle" class="text-blue-500 w-5 h-5 mr-2"></i>Priority Support</li>
                     </ul>
-                    <a href="/#contact">
+                    <a href="#contact">
                         <button class="pricing-button w-full py-3 rounded-lg font-semibold">Contact Us</button>
                     </a>
                 </div>
@@ -200,7 +209,7 @@
             <p class="text-gray-300 mb-8 max-w-xl mx-auto" data-aos="fade-up" data-aos-delay="100">
                 Join thousands of satisfied customers using BetterCar to optimize their fuel management.
             </p>
-            <a href="/signup">
+            <a href="signup.html">
                 <button class="transparent-button px-8 py-4 rounded-full font-semibold" data-aos="fade-up" data-aos-delay="200">
                     Sign Up Now
                 </button>
@@ -223,9 +232,9 @@
                 <div>
                     <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li><a href="/#features" class="hover:text-blue-500">Features</a></li>
-                        <li><a href="/#about" class="hover:text-blue-500">About Us</a></li>
-                        <li><a href="/#contact" class="hover:text-blue-500">Contact</a></li>
+                        <li><a href="#features" class="hover:text-blue-500">Features</a></li>
+                        <li><a href="#about" class="hover:text-blue-500">About Us</a></li>
+                        <li><a href="#contact" class="hover:text-blue-500">Contact</a></li>
                     </ul>
                 </div>
                 <!-- Footer Column 3 -->
